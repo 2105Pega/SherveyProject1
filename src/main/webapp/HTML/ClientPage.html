@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<head>
+	<script src="../JS/sherveyScripts.js"></script> 
+</head>
+
+<body onload="onClientLoad()">
+
+	 <div> 
+		 <p id="Username"></p>
+		 <p id="Password"> </p>
+		 <p id="fName">  </p>
+		 <p id="lName"> </p>
+		 <p id="Address"></p>
+		 <p id="id"> </p>
+	 </div>
+	 
+	 <div id="accountDisplay">
+	 <button type="button" onclick="cleanTable()">Clean Table</button>
+	 	<table id="accountTable">
+	 	<tr>
+	 	<th>Account Name</th>
+	 	<th>Balance</th>
+		<th>Account ID</th>
+		<th>Status</th>
+	 	</tr>
+	 	
+	 	</table>
+	 </div>
+	
+	<div id="transactionDiv">
+	<label>Amount: </label> <input type="number" id="amountEntry" min="0.01"> 
+	<label>Selected Account ID: </label> <input type="number" id="selectedAccount" min="1"> 
+	<br>
+	<label>Transfer Target Account ID: </label> <input type="number" id="targetSelect" min="1"> 
+	<br>
+	<label>Withdraw</label><input name="transactionSelect" type="radio" id="withdraw" value="withdraw" checked="checked">
+	<br>
+	<label>Deposit</label><input name="transactionSelect" type="radio" id="deposit" value="deposit">
+	<br>
+	<label>Transfer</label><input name="transactionSelect" type="radio" id="transfer" value="transfer">
+	<br>
+	<button onClick="submitTransaction()">Submit Transaction</button>
+	</div>
+	
+</body>
