@@ -26,12 +26,28 @@ public class AccountController {
 		return as.getAccountByID(id);
 	}
 	
+	@Path("/makeAccount")
+	@POST
+	public void makeAccount(@QueryParam("accountName") String name, @QueryParam("id") int id)
+	{
+		Account a = new Account(name, id);
+		as.addAccount(a);
+	}
+	
 	@Path("/getAllAccountsByID")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<Account> getAllClientAccounts(@QueryParam("id") int id)
+	public ArrayList<Account> getAllClientAccountsByID(@QueryParam("id") int id)
 	{
 		return as.getAccountsByOwnerID(id);
+	}
+	
+	@Path("/getAllAccounts")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Account> getAllClientAccountsByID()
+	{
+		return as.getAllAccounts();
 	}
 	
 	@Path("/getCoAccounts")
@@ -44,30 +60,53 @@ public class AccountController {
 	
 	@Path("/removeAccount")
 	@DELETE
-	public void removeAccount(@QueryParam("id") int id)
+	public void removeAccount(@QueryParam("id") int id, @QueryParam("clientid") int cID)
 	{
-		System.out.println(as.removeAccountByID(id));
+		if(as.getAccountByID(id).getOwnerID() == cID)
+		{
+			as.removeAccountByID(id);
+		}
 	}
 	
 	@Path("/withdraw")
 	@POST
-	public void withdraw(@QueryParam("id") int id, @QueryParam("amount") int amount)
+	public void withdraw(@QueryParam("id") int id, @QueryParam("amount") int amount,  @QueryParam("cID") int cID)
 	{
-		as.withdraw(id, amount);
+		
+		boolean isCo = as.isCoOwned(cID, id);
+		boolean isOwned = as.getAccountByID(id).getOwnerID() == cID;
+		
+		System.out.println("cID: " + cID + " ID: " + id + " isCo: " + isCo + " isOwned: " + isOwned);
+		
+		if(as.isCoOwned(cID, id) || as.getAccountByID(id).getOwnerID() == cID)
+		{
+			as.withdraw(id, amount);
+		}
+		
+		
 	}
 	
 	@Path("/deposit")
 	@POST
-	public void deposit(@QueryParam("id") int id, @QueryParam("amount") int amount)
+	public void deposit(@QueryParam("id") int id, @QueryParam("amount") int amount, @QueryParam("cID") int cID)
 	{
-		as.deposit(id, amount);
+		
+		if(as.isCoOwned(cID, id) || as.getAccountByID(id).getOwnerID() == cID)
+		{
+			as.deposit(id, amount);
+		}
+		
 	}
 	
 	@Path("/transfer")
 	@POST
-	public void deposit(@QueryParam("sender") int sender, @QueryParam("target") int target, @QueryParam("amount") int amount)
+	public void transfer(@QueryParam("sender") int sender, @QueryParam("target") int target, @QueryParam("amount") int amount, @QueryParam("cID") int cID)
 	{
-		as.transfer(sender, target, amount);
+		if(as.isCoOwned(cID, sender) || as.getAccountByID(sender).getOwnerID() == cID)
+		{
+			as.transfer(sender, target, amount);
+		}
+		
 	}
 	
 }

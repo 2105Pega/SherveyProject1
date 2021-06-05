@@ -72,7 +72,7 @@ public class ClientController {
 		System.out.println("Updated: " + cs.updateClient(c));
 	}
 	
-	@Path("/GetAllClients")
+	@Path("/getAllClients")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Client> getAllUsers()

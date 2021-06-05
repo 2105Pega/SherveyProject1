@@ -60,6 +60,14 @@ public class Account implements Serializable {
 		this.ACCOUNT_ID = -1;
 	}
 	
+	public Account( String accountName, int ownerID) {
+		super();
+		this.status = AccountStatus.PENDING;
+		this.balance = 0;
+		this.ownerID = ownerID;
+		this.accountName = accountName;
+	}
+	
 	public Account( String accountName, AccountStatus status, double balance, int ownerID) {
 		super();
 		this.status = status;

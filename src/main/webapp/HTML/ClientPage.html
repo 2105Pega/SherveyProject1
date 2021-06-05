@@ -23,6 +23,7 @@
 	 	<th>Balance</th>
 		<th>Account ID</th>
 		<th>Status</th>
+		<th>Co-Signer</th>
 	 	</tr>
 	 	
 	 	</table>
@@ -41,6 +42,15 @@
 	<label>Transfer</label><input name="transactionSelect" type="radio" id="transfer" value="transfer">
 	<br>
 	<button onClick="submitTransaction()">Submit Transaction</button>
+	</div>
+	
+	<div id="createAccountDiv" >
+		
+		<div id=createAccountEntryDiv>
+		<label>Account Name: </label>
+		<input type="text" id="createAccountName"> <br>
+		<button onClick="createAccount()">Create Account</button>
+		</div>
 	</div>
 	
 </body>
