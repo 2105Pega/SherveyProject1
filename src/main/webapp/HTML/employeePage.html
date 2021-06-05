@@ -19,7 +19,20 @@
 	 	<br>
 	 	<button id="activateEditAccount" onClick="toggleHideEditAcc()">Edit Account</button>
 	 	
-	 	<div id="editAccount" style="display:none"></div>
+	 	<div id="editAccount" style="display:none">
+
+			<label>Selected Account ID: </label> <input type="number" id="selectedAccount" min="1"> 
+			<br>
+			<label>Approve</label><input name="accountStatus" type="radio" id="approve" value="approved" checked="checked">
+			<br>
+			<label>Deny</label><input name="accountStatus" type="radio" id="deny" value="denied">
+			<br>
+			<label>Cancel</label><input name="accountStatus" type="radio" id="cancel" value="canceled">
+			<br>
+			<button onClick="changeAccountStatus()">Edit Status</button>
+
+	 	
+	 	</div>
 	 	
 	 </div>
 	 
@@ -38,7 +51,7 @@
 	 	<button id="activateEditClient" onClick="toggleHideEditCli()">Edit Client</button>
 	 	
 	 	<div id="editClient" style="display:none">
-	 	<label>Input Client ID: </label> <input type="number" id="clientToUpdate" onchange="prepEditClient()"><br>
+	 	<label>Input Client ID: </label> <input type="number" id="clientToUpdate" min="0" onchange="prepEditClient()"><br>
 	 	<label>Username: </label> <input type="text" id="usernameUpdate"> <br>
 	 	<label>Password: </label> <input type="text" id="passwordupdate"> <br>
 	 	<label>First Name: </label> <input type="text" id="fNameUpdate"> <br>

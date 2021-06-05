@@ -65,7 +65,7 @@ async function onClientLoad()
         document.getElementById("id").innerHTML =       "Client id:  " + client.clientID;
     }
     
-    
+    /*
     document.getElementById("withdraw").addEventListener('click', function(){
 	document.cookie = "transActionType=" + event.target.id;
 
@@ -78,7 +78,7 @@ async function onClientLoad()
 	document.cookie = "transActionType=" + event.target.id;;
 
 	});
-    
+    */
   	populateAccountTable();
 }
 
@@ -176,7 +176,7 @@ async function populateEmployeeTable()
 {
 	let accountList = await getAllAccounts();
 	
-	console.log(accountList);
+	//console.log(accountList);
 	
 	let table = document.getElementById("accountTable");
 	
@@ -215,8 +215,7 @@ async function populateEmployeeTable()
 		cell4.innerHTML = clientList[ix].firstName;
 		cell5.innerHTML = clientList[ix].lastName;
 		cell6.innerHTML = clientList[ix].address;
-	}
-	
+	}	
 }
 
 function cleanTable(tableName)
@@ -240,7 +239,7 @@ async function submitTransaction()
 {
 	//console.log(document.cookie);
 	
-	let type = getCookie("transActionType");
+	let type = document.querySelector('input[name="transactionSelect"]:checked').value;
 	let cID = getCookie("currentUserid");
 	let id = document.getElementById("selectedAccount").value;
 	let amount  = document.getElementById("amountEntry").value;
@@ -250,14 +249,14 @@ async function submitTransaction()
 	
 	if(type == "withdraw")
 	{
-		//console.log("Withdraw " + amount + " for " + id);
+		console.log("Withdraw " + amount + " for " + id);
 		url = "http://localhost:8080/project1/api/account/withdraw?id=" + id +"&amount=" + amount + "&cID=" + cID;
 		console.log(url);
 		await fetch(url, {method : "POST"});
 	}
 	if(type == "deposit")
 	{
-		//console.log("Deposit" + amount + " for " + id);
+		console.log("Deposit" + amount + " for " + id);
 		url = "http://localhost:8080/project1/api/account/deposit?id=" + id +"&amount=" + amount + "&cID=" + cID;
 		await fetch(url, {method : "POST"});
 	}
@@ -267,6 +266,7 @@ async function submitTransaction()
 		//console.log("Transfer" + amount + " for " + id + " to " + target);
 		
 		url = "http://localhost:8080/project1/api/account/transfer?target=" +target +"&sender=" + id +"&amount=" + amount + "&cID=" + cID;
+		console.log(url);
 		await fetch(url, {method : "POST"});
 	}
 	
@@ -434,5 +434,18 @@ async function deleteClient()
 		ResetTables();
 		document.getElementById("confirmDeleteCheck").checked="false";
 	}
+	}
+}
+
+async function changeAccountStatus()
+{
+	let q = document.querySelector('input[name="accountStatus"]:checked').value;
+	let id = document.getElementById("selectedAccount").value;
+	let url = "http://localhost:8080/project1/api/account/changeStatus?id=" + id + "&status=" + q;
+
+	let response = await fetch(url, {method: "POST"})
+	if(response.ok)
+	{
+		ResetTables();
 	}
 }

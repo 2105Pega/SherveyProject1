@@ -11,6 +11,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.revature.bank.Account;
+import com.revature.bank.AccountStatus;
 import com.revature.services.AccountService;
 
 @Path("/account")
@@ -102,6 +103,8 @@ public class AccountController {
 	@POST
 	public void transfer(@QueryParam("sender") int sender, @QueryParam("target") int target, @QueryParam("amount") int amount, @QueryParam("cID") int cID)
 	{
+		System.out.println("Transfer");
+		
 		if(as.isCoOwned(cID, sender) || as.getAccountByID(sender).getOwnerID() == cID)
 		{
 			as.transfer(sender, target, amount);
@@ -109,4 +112,19 @@ public class AccountController {
 		
 	}
 	
+	@Path("/changeStatus")
+	@POST
+	public void changeStatus (@QueryParam("id") int id, @QueryParam("status") String status)
+	{
+		Account a = as.getAccountByID(id);
+		status = status.toUpperCase();
+		
+		if(a != null)
+		{	
+			as.updateStatus(AccountStatus.valueOf(status), id);
+			System.out.println(a.toString());
+
+		}
+		
+	}
 }
