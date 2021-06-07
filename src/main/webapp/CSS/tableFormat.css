@@ -17,7 +17,7 @@ td{
 }
 
 .balanceTH{
-	min-width: 200px;
+	min-width: 100px;
 	height: 25px;
 	text-align: center;
 }
@@ -36,4 +36,34 @@ td{
 .coTG{
 	text-align: center;
 	height: 25px;
+}
+
+.userTH{
+	min-width: 160px;
+	text-align: center;
+}
+
+.pwTH{
+	min-width: 160px;
+	text-align: center;
+}
+
+.cidTH{
+	min-width: 75px;
+	text-align: center;
+}
+
+.fNameTH{
+	min-width: 160px;
+	text-align: center;
+}
+
+.lNameTH{
+	min-width: 160px;
+	text-align: center;
+}
+
+.addTH{
+	min-width: 300px;
+	text-align: center;
 }

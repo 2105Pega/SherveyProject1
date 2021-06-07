@@ -239,6 +239,13 @@ async function populateEmployeeTable()
 		let cell5 = row.insertCell(4);
 		let cell6 = row.insertCell(5);
 		
+		cell1.classList.add('userTH');
+		cell2.classList.add('pwTH');
+		cell3.classList.add('cidTH');
+		cell4.classList.add('fNameTH');
+		cell5.classList.add('lNameTH');
+		cell6.classList.add('addTH');
+		
 		cell1.innerHTML = clientList[ix].userName;
 		cell2.innerHTML = clientList[ix].password;
 		cell3.innerHTML = clientList[ix].clientID;
