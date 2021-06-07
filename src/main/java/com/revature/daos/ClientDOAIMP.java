@@ -32,7 +32,7 @@ public class ClientDOAIMP implements  ClientDAO {
 			}
 			
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return null;
 	}
@@ -55,7 +55,7 @@ public class ClientDOAIMP implements  ClientDAO {
 
 			
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return null;
 	}
@@ -80,7 +80,7 @@ public class ClientDOAIMP implements  ClientDAO {
 
 			
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return null;
 	}
@@ -103,7 +103,7 @@ public class ClientDOAIMP implements  ClientDAO {
 			statement.execute();
 			return true;
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return false;
 	}
@@ -121,7 +121,7 @@ public class ClientDOAIMP implements  ClientDAO {
 			
 			return true;
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return false;
 	}
@@ -140,7 +140,7 @@ public class ClientDOAIMP implements  ClientDAO {
 			return true;
 			
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return false;
 	}
@@ -164,7 +164,7 @@ public class ClientDOAIMP implements  ClientDAO {
 			return true;
 			
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return false;
 	}
@@ -175,7 +175,7 @@ public class ClientDOAIMP implements  ClientDAO {
 			return new Client(r.getInt("client_id"), r.getString("username"), r.getString("password"), 
 					r.getString("firstname"), r.getString("lastname"), r.getString("address"));
 		} catch (SQLException e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return null;
 	}
@@ -198,7 +198,7 @@ public class ClientDOAIMP implements  ClientDAO {
 
 			return cList;
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return null;
 	}

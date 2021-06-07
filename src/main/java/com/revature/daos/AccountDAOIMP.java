@@ -34,7 +34,7 @@ public class AccountDAOIMP implements AccountDAO{
 			statement.execute();
 			return true;
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return false;
 	}
@@ -57,7 +57,7 @@ public class AccountDAOIMP implements AccountDAO{
 			return true;
 			
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());;
+			logger.error(e.getStackTrace().toString());
 		}
 		return false;
 	}
@@ -78,7 +78,7 @@ public class AccountDAOIMP implements AccountDAO{
 			return true;
 			
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return false;
 	}
@@ -97,7 +97,7 @@ public class AccountDAOIMP implements AccountDAO{
 			return a;
 			
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return null;
 	}
@@ -122,7 +122,7 @@ public class AccountDAOIMP implements AccountDAO{
 			return aList;
 			
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return null;
 	}
@@ -149,7 +149,7 @@ public class AccountDAOIMP implements AccountDAO{
 			}
 			return aList;
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return null;
 	}
@@ -176,7 +176,7 @@ public class AccountDAOIMP implements AccountDAO{
 			}
 			return aList;
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return null;
 	}
@@ -199,7 +199,7 @@ public class AccountDAOIMP implements AccountDAO{
 			}
 			return aList;
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return null;
 	}
@@ -218,7 +218,7 @@ public class AccountDAOIMP implements AccountDAO{
 			return true;
 			
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return false;
 	}
@@ -236,7 +236,7 @@ public class AccountDAOIMP implements AccountDAO{
 			
 			return true;
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return false;
 	}
@@ -262,7 +262,7 @@ public class AccountDAOIMP implements AccountDAO{
 			return true;
 			
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return false;
 	}
@@ -303,7 +303,7 @@ public class AccountDAOIMP implements AccountDAO{
 			
 			return true;
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return false;
 	}
@@ -322,7 +322,7 @@ public class AccountDAOIMP implements AccountDAO{
 			
 			return true;
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e.getStackTrace().toString());
 		}
 		return false;
 	}

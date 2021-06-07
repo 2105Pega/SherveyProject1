@@ -15,7 +15,9 @@ import javax.ws.rs.core.MediaType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.revature.bank.Account;
 import com.revature.bank.Client;
+import com.revature.services.AccountService;
 import com.revature.services.ClientService;
 import com.revature.utils.ConnectionUtils;
 import com.revature.utils.LogInPack;
@@ -67,7 +69,20 @@ public class ClientController {
 	public void removeUserByID(@QueryParam("id") int id)
 	{
 		logger.trace("Remove User By ID Request Recieved.");
-		System.out.println("Removed: " + cs.removeClientByID(id));
+		try {
+		AccountService as = new AccountService();
+		
+		ArrayList<Account> al = as.getAccountsByOwnerID(id);
+		
+		for(Account a : al)
+		{
+			as.removeAccountByID(a.getACCOUNT_ID());
+		}
+		
+		logger.info("Removed: " + cs.removeClientByID(id));
+		} catch (Exception e){
+			logger.error(e.getStackTrace().toString());
+		}
 	}
 	
 	@Path("/UpdateUser")
@@ -76,7 +91,7 @@ public class ClientController {
 	public void updateUser(Client c)
 	{
 		logger.trace("Update User Request Recieved.");
-		System.out.println("Updated: " + cs.updateClient(c));
+		logger.info("Updated: " + cs.updateClient(c));
 	}
 	
 	@Path("/getAllClients")
@@ -87,7 +102,7 @@ public class ClientController {
 		logger.trace("Get All Users Request Recieved.");
 		ArrayList<Client> list = cs.getAllClients();
 		
-		System.out.println(list.toString());
+		logger.info(list.toString());
 		
 		return list;
 	}

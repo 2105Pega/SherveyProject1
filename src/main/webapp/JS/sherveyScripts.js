@@ -219,7 +219,7 @@ async function populateEmployeeTable()
 		cell2.classList.add('balanceTH');
 		cell3.classList.add('accIDTH');
 		cell4.classList.add('statTH');
-		cell5.classList.add('coTG');
+		cell5.classList.add('accIDTH');
 		
 		cell1.innerHTML = accountList[ix].accountName;
 		cell2.innerHTML = accountList[ix].balance;
