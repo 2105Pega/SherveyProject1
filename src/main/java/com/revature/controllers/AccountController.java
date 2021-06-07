@@ -71,7 +71,7 @@ public class AccountController {
 	
 	@Path("/withdraw")
 	@POST
-	public void withdraw(@QueryParam("id") int id, @QueryParam("amount") int amount,  @QueryParam("cID") int cID)
+	public void withdraw(@QueryParam("id") int id, @QueryParam("amount") double amount,  @QueryParam("cID") int cID)
 	{
 		
 		boolean isCo = as.isCoOwned(cID, id);
@@ -89,7 +89,7 @@ public class AccountController {
 	
 	@Path("/deposit")
 	@POST
-	public void deposit(@QueryParam("id") int id, @QueryParam("amount") int amount, @QueryParam("cID") int cID)
+	public void deposit(@QueryParam("id") int id, @QueryParam("amount") double amount, @QueryParam("cID") int cID)
 	{
 		
 		if(as.isCoOwned(cID, id) || as.getAccountByID(id).getOwnerID() == cID)
@@ -101,7 +101,7 @@ public class AccountController {
 	
 	@Path("/transfer")
 	@POST
-	public void transfer(@QueryParam("sender") int sender, @QueryParam("target") int target, @QueryParam("amount") int amount, @QueryParam("cID") int cID)
+	public void transfer(@QueryParam("sender") int sender, @QueryParam("target") int target, @QueryParam("amount") double amount, @QueryParam("cID") int cID)
 	{
 		System.out.println("Transfer");
 		
@@ -125,6 +125,15 @@ public class AccountController {
 			System.out.println(a.toString());
 
 		}
-		
+	}
+	
+	@Path("/addCoSign")
+	@POST
+	public void addCoSign(@QueryParam("aID") int aID, @QueryParam("cID") int cID, @QueryParam("coID") int coID)
+	{
+		if(as.getAccountByID(aID).getOwnerID() == cID)
+		{	
+			as.addCoOwner(aID, coID);
+		}
 	}
 }

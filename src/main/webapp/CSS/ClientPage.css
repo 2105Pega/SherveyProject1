@@ -1,0 +1,12 @@
+body {
+	background-color: beige;
+}
+
+.infoDisplay{
+	margin: 10px;
+}
+
+.inputLab{
+	display:inline-block;
+	width: 190px;
+}

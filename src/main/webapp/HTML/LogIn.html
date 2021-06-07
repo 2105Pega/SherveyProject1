@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 
 <head>
+	<link rel="stylesheet" href="../CSS/LogIn.css">
     <script src="../JS/sherveyScripts.js"></script> 
 </head>
 
 <body>
-
-        <label>Username: </label> <input type="text" id="Username"> <br>
-        <label>Password:  </label> <input type="text" id="Password"> <br>
-
-        <input type="button" value="Log In" onclick="logInClick()"> <br>
-        <button onClick="goToCreateClient()">Create New Account</button>
+		<h1>Welcome to Money Lovers Bank</h1>
+		<div id="logInDiv">
+			<div class="item" id="inputLabels">
+		        <label>Username:  </label> <br>
+		        <label>Password:  </label> 
+			</div>
+			<div class="item" id="inputFields">
+				<input type="text" id="Username"> <br>
+				<input type="text" id="Password"> <br>
+			</div>
+        </div>
+        <div id="inputButtons">
+		        <input type="button" value="Log In" onclick="logInClick()">
+		        <button onClick="goToCreateClient()">Create New Account</button>
+	        </div>
 </body>

@@ -1,0 +1,23 @@
+body {
+	background-color: beige;
+}
+
+#container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#inputs{
+    text-align: center;
+}
+
+#createAccountButton{
+	margin-top: 5px;
+    width: 90px;
+}
+
+.createItem{
+	padding-top: 5px;
+    padding-bottom: 5px;
+}

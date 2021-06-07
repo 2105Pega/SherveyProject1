@@ -1,56 +1,52 @@
 <!DOCTYPE html>
 
 <head>
+	<link rel="stylesheet" href="../CSS/ClientPage.css">
+	<link rel="stylesheet" href="../CSS/tableFormat.css">
 	<script src="../JS/sherveyScripts.js"></script> 
 </head>
 
 <body onload="onClientLoad()">
 
-	 <div> 
-		 <p id="Username"></p>
-		 <p id="Password"> </p>
-		 <p id="fName">  </p>
-		 <p id="lName"> </p>
-		 <p id="Address"></p>
-		 <p id="id"> </p>
+	 <div id="UserInfoDisplay"> 
+		 <p id="UserInfo"></p>
 	 </div>
 	 
 	 <div id="accountDisplay">
-	 <button type="button" onclick="cleanTable()">Clean Table</button>
 	 	<table id="accountTable">
 	 	<tr>
-	 	<th>Account Name</th>
-	 	<th>Balance</th>
-		<th>Account ID</th>
-		<th>Status</th>
-		<th>Co-Signer</th>
+	 	<th class="nameTH">Account Name</th>
+	 	<th class="balanceTH">Balance</th>
+		<th class="accIDTH">Account ID</th>
+		<th class="statTH">Status</th>
+		<th class="coTG">Co-Signer</th>
 	 	</tr>
-	 	
 	 	</table>
 	 </div>
+	 
+	<br>
 	
 	<div id="transactionDiv">
-	<label>Amount: </label> <input type="number" id="amountEntry" min="0.01"> 
-	<label>Selected Account ID: </label> <input type="number" id="selectedAccount" min="1"> 
-	<br>
-	<label>Transfer Target Account ID: </label> <input type="number" id="targetSelect" min="1"> 
-	<br>
-	<label>Withdraw</label><input name="transactionSelect" type="radio" id="withdraw" value="withdraw" checked="checked">
-	<br>
-	<label>Deposit</label><input name="transactionSelect" type="radio" id="deposit" value="deposit">
-	<br>
-	<label>Transfer</label><input name="transactionSelect" type="radio" id="transfer" value="transfer">
-	<br>
-	<button onClick="submitTransaction()">Submit Transaction</button>
-	</div>
-	
-	<div id="createAccountDiv" >
-		
-		<div id=createAccountEntryDiv>
-		<label>Account Name: </label>
-		<input type="text" id="createAccountName"> <br>
-		<button onClick="createAccount()">Create Account</button>
-		</div>
+
+			<label>Withdraw</label> <input name="transactionSelect" type="radio" id="withdraw" value="withdraw" checked="checked">
+			<label>Deposit</label> <input name="transactionSelect" type="radio" id="deposit" value="deposit">
+			<label>Transfer</label> <input name="transactionSelect" type="radio" id="transfer" value="transfer">
+			<br>
+			<label  class="inputLab">Selected Account ID: </label> <input type="number" id="selectedAccount" min="1"> 
+			<br>
+			<label class="inputLab">Amount: </label> <input type="number" id="amountEntry" min="0.01">  
+			<br>
+			<label  class="inputLab">Transfer Target Account ID: </label> <input type="number" id="targetSelect" min="1"> 
+			<br>
+			
+			<button onClick="submitTransaction()">Submit Transaction</button> 
+			<br>
+			<br>
+			<label  class="inputLab">Add Co-Signer To Account: </label> <input type="number" id="CoSignerID" min="1">  <button onClick="addCoSigner()">Add To Account</button> 
+			<br>
+			<br>
+			<label  class="inputLab">New Account Name: </label> <input type="text" id="createAccountName">
+			<button onClick="createAccount()">Create Account</button><br>
 	</div>
 	
 </body>

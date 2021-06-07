@@ -1,0 +1,21 @@
+body {
+	background-color: beige;
+}
+
+h1 {
+	text-align: center;
+}
+
+.item{
+ padding: 5px;
+}
+
+#logInDiv{
+	display: flex;
+justify-content: center;
+align-items: center;
+}
+
+#inputButtons{
+	text-align: center;
+}

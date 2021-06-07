@@ -1,0 +1,39 @@
+table{
+	border: solid black 1px;
+}
+
+th{
+	border: solid black 1px;
+}
+
+td{
+	border: solid black 1px;
+}
+
+.nameTH{
+	min-width: 200px;
+	height: 25px;
+	text-align: center;
+}
+
+.balanceTH{
+	min-width: 200px;
+	height: 25px;
+	text-align: center;
+}
+
+.accIDTH{
+	height: 25px;
+	text-align: center;
+}
+
+.statTH{
+	min-width: 120px;
+	height: 25px;
+	text-align: center;
+}
+
+.coTG{
+	text-align: center;
+	height: 25px;
+}

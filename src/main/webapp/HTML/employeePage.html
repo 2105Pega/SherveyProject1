@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 
 <head>
+	<link rel="stylesheet" href="../CSS/tableFormat.css">
+	<link rel="stylesheet" href="../CSS/Employeepage.css">
 	<script src="../JS/sherveyScripts.js"></script> 
 </head>
 
 <body onLoad="populateEmployeeTable()">
 	
+	<h2>Welcome Valued Employee</h2>
+	
 	<div id="accountDisplay">
 	 	<table id="accountTable">
 	 	<tr>
-	 	<th>Account Name</th>
-	 	<th>Balance</th>
-		<th>Account ID</th>
-		<th>Status</th>
-		<th>Owner ID</th>
+	 	<th class="nameTH">Account Name</th>
+	 	<th class="balanceTH">Balance</th>
+		<th class="accIDTH">Account ID</th>
+		<th class="statTH">Status</th>
+		<th class="coTG">Co-Signer</th>
 	 	</tr>
 	 	</table>
 	 	<br>
@@ -21,19 +25,17 @@
 	 	
 	 	<div id="editAccount" style="display:none">
 
-			<label>Selected Account ID: </label> <input type="number" id="selectedAccount" min="1"> 
+			<label>Select Account ID: </label> <input type="number" id="selectedAccount" min="1"> 
 			<br>
 			<label>Approve</label><input name="accountStatus" type="radio" id="approve" value="approved" checked="checked">
-			<br>
 			<label>Deny</label><input name="accountStatus" type="radio" id="deny" value="denied">
-			<br>
 			<label>Cancel</label><input name="accountStatus" type="radio" id="cancel" value="canceled">
 			<br>
 			<button onClick="changeAccountStatus()">Edit Status</button>
 
 	 	
 	 	</div>
-	 	
+	 	<br><br>
 	 </div>
 	 
 	 	<div id="clientDisplau">
@@ -51,12 +53,12 @@
 	 	<button id="activateEditClient" onClick="toggleHideEditCli()">Edit Client</button>
 	 	
 	 	<div id="editClient" style="display:none">
-	 	<label>Input Client ID: </label> <input type="number" id="clientToUpdate" min="0" onchange="prepEditClient()"><br>
-	 	<label>Username: </label> <input type="text" id="usernameUpdate"> <br>
-	 	<label>Password: </label> <input type="text" id="passwordupdate"> <br>
-	 	<label>First Name: </label> <input type="text" id="fNameUpdate"> <br>
-	 	<label>Last Name: </label> <input type="text" id="lNameUpdate"> <br>
-	 	<label>Address: </label> <input type="text" id="addresspdate"> <br>
+	 	<label class="inputLab">Input Client ID: </label> <input type="number" id="clientToUpdate" min="0" onchange="prepEditClient()"><br>
+	 	<label class="inputLab">Username: </label> <input type="text" id="usernameUpdate"> <br>
+	 	<label class="inputLab">Password: </label> <input type="text" id="passwordupdate"> <br>
+	 	<label class="inputLab">First Name: </label> <input type="text" id="fNameUpdate"> <br>
+	 	<label class="inputLab">Last Name: </label> <input type="text" id="lNameUpdate"> <br>
+	 	<label class="inputLab">Address: </label> <input type="text" id="addresspdate"> <br>
 	 	<button id="updateClient" onClick="updateClient()">Update Client</button>
 	 	<button id="deleteClient" onClick="deleteClient()">Delete Client</button> 
 	 	<label>Confirm Delete</label> <input type="checkbox" id="confirmDeleteCheck" value="delete">

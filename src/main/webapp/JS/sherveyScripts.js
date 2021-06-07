@@ -24,20 +24,27 @@ async function logInClick()
     let username = document.getElementById("Username").value;
     let password = document.getElementById("Password").value;
 
-	let url = "http://localhost:8080/project1/api/client/userByUP?username=" + username + 
-    "&password=" + password;
-
-    console.log(url);
-    
-    
-    let response = await fetch(url);
-
-    if(response.ok)
-    {
-        let client = await response.json();
-		
-		document.cookie = "currentUserid=" + client.clientID;
-        window.location.href = "http://localhost:8080/project1/HTML/ClientPage.html"
+	if(username == "admin" && password == "root")
+	{
+		window.location.href = "http://localhost:8080/project1/HTML/employeePage.html"
+	}
+	else
+	{
+		let url = "http://localhost:8080/project1/api/client/userByUP?username=" + username + 
+	    "&password=" + password;
+	
+	    console.log(url);
+	    
+	    
+	    let response = await fetch(url);
+	
+	    if(response.ok)
+	    {
+	        let client = await response.json();
+			
+			document.cookie = "currentUserid=" + client.clientID;
+	        window.location.href = "http://localhost:8080/project1/HTML/ClientPage.html"
+	    }
     }
 }
 
@@ -56,13 +63,17 @@ async function onClientLoad()
         let client = await response.json();
         
         console.log(client);
+        let writeArea = document.getElementById("UserInfo");
         
-        document.getElementById("Username").innerHTML = "username:   " + client.userName;
-        document.getElementById("Password").innerHTML = "password:   " + client.password;
+        writeArea.innerHTML = "Hello " + client.firstName + " " + client.lastName + ". <br>" + "Your Username is " + client.userName + ".<br> Your Client ID is " + client.clientID;
+        /*
+        document.getElementById("Username").innerHTML = "Username:   " + client.userName;
+        document.getElementById("Password").innerHTML = "Password:   " + client.password;
         document.getElementById("fName").innerHTML =    "First Name: " + client.firstName;
         document.getElementById("lName").innerHTML =    "Last Name : " + client.lastName;
         document.getElementById("Address").innerHTML =  "Address:    " + client.address;
         document.getElementById("id").innerHTML =       "Client id:  " + client.clientID;
+        */
     }
     
     /*
@@ -147,6 +158,13 @@ async function populateAccountTable()
 		let cell4 = row.insertCell(3);
 		let cell5 = row.insertCell(4);
 		
+		cell1.classList.add('nameTH');
+		cell2.classList.add('balanceTH');
+		cell3.classList.add('accIDTH');
+		cell4.classList.add('statTH');
+		cell5.classList.add('coTG');
+		
+		
 		cell1.innerHTML = accountList[ix].accountName;
 		cell2.innerHTML = accountList[ix].balance;
 		cell3.innerHTML = accountList[ix].account_ID;
@@ -163,6 +181,12 @@ async function populateAccountTable()
 		let cell3 = row.insertCell(2);
 		let cell4 = row.insertCell(3);
 		let cell5 = row.insertCell(4);
+		
+		cell1.classList.add('nameTH');
+		cell2.classList.add('balanceTH');
+		cell3.classList.add('accIDTH');
+		cell4.classList.add('statTH');
+		cell5.classList.add('coTG');
 		
 		cell1.innerHTML = accountList[ix].accountName;
 		cell2.innerHTML = accountList[ix].balance;
@@ -188,6 +212,12 @@ async function populateEmployeeTable()
 		let cell3 = row.insertCell(2);
 		let cell4 = row.insertCell(3);
 		let cell5 = row.insertCell(4);
+		
+		cell1.classList.add('nameTH');
+		cell2.classList.add('balanceTH');
+		cell3.classList.add('accIDTH');
+		cell4.classList.add('statTH');
+		cell5.classList.add('coTG');
 		
 		cell1.innerHTML = accountList[ix].accountName;
 		cell2.innerHTML = accountList[ix].balance;
@@ -443,9 +473,25 @@ async function changeAccountStatus()
 	let id = document.getElementById("selectedAccount").value;
 	let url = "http://localhost:8080/project1/api/account/changeStatus?id=" + id + "&status=" + q;
 
-	let response = await fetch(url, {method: "POST"})
+	let response = await fetch(url, {method: "POST"});
 	if(response.ok)
 	{
 		ResetTables();
+	}
+}
+
+async function addCoSigner()
+{
+	let type = document.querySelector('input[name="transactionSelect"]:checked').value;
+	let cID = getCookie("currentUserid");
+	let id = document.getElementById("selectedAccount").value;
+	let coID  = document.getElementById("CoSignerID").value;
+	let url = "http://localhost:8080/project1/api/account/addCoSign?aID=" + id +"&cID=" + cID + "&coID=" + coID;
+	
+	let response = await fetch(url, {method: "POST"});
+	if(response.ok)
+	{
+		cleanTable("accountTable");
+		populateAccountTable();
 	}
 }
