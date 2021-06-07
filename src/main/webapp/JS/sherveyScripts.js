@@ -30,13 +30,15 @@ async function logInClick()
 	}
 	else
 	{
-		let url = "http://localhost:8080/project1/api/client/userByUP?username=" + username + 
-	    "&password=" + password;
-	
-	    console.log(url);
+		let url = "http://localhost:8080/project1/api/client/userByUP";
+		
+		let LogInPack = {liusername:username,lipassword:password}
+		
+		let lp = JSON.stringify(LogInPack);
+		
+	    console.log(url);	    
 	    
-	    
-	    let response = await fetch(url);
+	    let response = await fetch(url, {method: "POST", headers: {"Content-Type": "application/json"}, body: lp});
 	
 	    if(response.ok)
 	    {

@@ -17,6 +17,7 @@ public class AccountService {
 	
 	public Account getAccountByID(int id)
 	{
+		logger.trace("getAccountByID Called");
 		try {
 			return aD.getAccountByID(id);
 			} catch (Exception e) {
@@ -27,6 +28,7 @@ public class AccountService {
 
 	public ArrayList<Account> getCoOwnedAccounts(int id)
 	{
+		logger.trace("getCoOwnedAccounts Called");
 		try {
 			return aD.getAccountsByCoOwnerID(id);
 		} catch (Exception e) {
@@ -37,6 +39,7 @@ public class AccountService {
 	
 	public boolean addAccount(Account a)
 	{
+		logger.trace("addAccount Called");
 		try {
 			if(a == null)
 			{
@@ -52,6 +55,7 @@ public class AccountService {
 	
 	public boolean removeAccountByID(int id)
 	{
+		logger.trace("removeAccountByID Called");
 	try {
 			return aD.removeAccount(id);
 			} catch (Exception e) {
@@ -62,6 +66,7 @@ public class AccountService {
 	
 	public boolean removeAccounts()
 	{
+		logger.trace("removeAccounts Called");
 	try {
 				return aD.removeAccounts();
 			} catch (Exception e) {
@@ -72,6 +77,7 @@ public class AccountService {
 	
 	public ArrayList<Account> getAccountsByOwnerID(int id)
 	{
+		logger.trace("getAccountsByOwnerID Called");
 	try {
 			return aD.getAccountsByOwnerID(id);
 			} catch (Exception e) {
@@ -82,6 +88,7 @@ public class AccountService {
 	
 	public ArrayList<Account> getAccountsByCoOwnerID(int id)
 	{
+		logger.trace("getAccountsByCoOwnerID Called");
 	try {
 			return aD.getAccountsByCoOwnerID(id);
 			} catch (Exception e) {
@@ -92,6 +99,7 @@ public class AccountService {
 	
 	public ArrayList<Account> getAllAccounts()
 	{
+		logger.trace("getAllAccounts Called");
 	try {
 			return aD.getAllAccounts();
 			} catch (Exception e) {
@@ -102,6 +110,7 @@ public class AccountService {
 	
 	public boolean isCoOwned(int clientID, int accountID)
 	{
+		logger.trace("isCoOwned Called");
 		try {
 			return aD.isCoOwned(clientID, accountID);
 		} catch (Exception e) {
@@ -112,6 +121,7 @@ public class AccountService {
 	
 	public boolean withdraw(int id, double ammountChange)
 	{
+		logger.trace("withdraw Called");
 		try {
 			Account a = aD.getAccountByID(id);
 			
@@ -143,6 +153,7 @@ public class AccountService {
 	
 	public boolean deposit(int id, double ammountChange)
 	{
+		logger.trace("deposit Called");
 		try {
 			Account a = aD.getAccountByID(id);
 			
@@ -170,7 +181,7 @@ public class AccountService {
 	
 	public boolean transfer(int senderID, int targetID, double ammount)
 	{
-		
+		logger.trace("transfer Called");
 		try {
 		Account target = aD.getAccountByID(targetID);
 		Account sender = aD.getAccountByID(senderID);
@@ -216,11 +227,13 @@ public class AccountService {
 	
 	public boolean addCoOwner(int aID, int coID)
 	{
+		logger.trace("addCoOwner Called");
 		return aD.addCoOwner(aID, coID);
 	}
 	
 	public boolean updateStatus(AccountStatus s, int id)
 	{
+		logger.trace("updateStatus Called");
 		return aD.updateStatus(s, id);
 	}
 }

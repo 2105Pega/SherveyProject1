@@ -12,14 +12,20 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.revature.bank.Client;
 import com.revature.services.ClientService;
+import com.revature.utils.ConnectionUtils;
+import com.revature.utils.LogInPack;
 
 @Path("/client")
 public class ClientController {
 
 	ClientService cs = new ClientService();
-
+	private static final Logger logger = LogManager.getLogger(ClientController.class);
+	
 	@Path("/hello")
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
@@ -33,19 +39,18 @@ public class ClientController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Client getUserID(@QueryParam("id") int id) 
 	{
-		
+		logger.trace("Get User By ID Request Recieved.");
 		return cs.getClientByID(id);
 
 	}
 	
 	@Path("/userByUP")
-	@GET
+	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public Client getUserUserAndPass(@QueryParam("username") String username, @QueryParam("password") String password) 
+	public Client getUserUserAndPass(LogInPack lp) 
 	{
-		
-		return cs.getClientByUserAndPass(username, password);
-
+		logger.trace("Get User By Username and Password Request Recieved.");
+		return cs.getClientByUserAndPass(lp.getLiusername(), lp.getLipassword());
 	}
 	
 	@Path("/makeUser")
@@ -53,14 +58,15 @@ public class ClientController {
 	@Consumes(MediaType.APPLICATION_JSON) //How we read JSON in request
 	public void postUser(Client newUser)
 	{
-		System.out.println(newUser.toString());
-		System.out.println("Client Added: " + cs.addClient(newUser));
+		logger.trace("Create User Request Recieved.");
+		cs.addClient(newUser);
 	}
 	
 	@Path("/removeUserByID")
 	@DELETE
 	public void removeUserByID(@QueryParam("id") int id)
 	{
+		logger.trace("Remove User By ID Request Recieved.");
 		System.out.println("Removed: " + cs.removeClientByID(id));
 	}
 	
@@ -69,6 +75,7 @@ public class ClientController {
 	@Consumes(MediaType.APPLICATION_JSON) //How we read JSON in request
 	public void updateUser(Client c)
 	{
+		logger.trace("Update User Request Recieved.");
 		System.out.println("Updated: " + cs.updateClient(c));
 	}
 	
@@ -77,6 +84,7 @@ public class ClientController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Client> getAllUsers()
 	{
+		logger.trace("Get All Users Request Recieved.");
 		ArrayList<Client> list = cs.getAllClients();
 		
 		System.out.println(list.toString());
